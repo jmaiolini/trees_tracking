@@ -1,0 +1,19 @@
+subscribers:
+
+  camera:
+    topic: /camera_topic
+    queue_size: 1
+
+  odom:
+    topic: /odom
+    queue_size: 1
+
+  Rois:
+    topic: /rois 
+    queue_size: 1
+
+publishers:
+
+  objects_position:
+    topic: /objects
+

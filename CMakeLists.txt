@@ -121,7 +121,7 @@ include_directories(
 )
 
 ## Declare a C++ library
-add_library( ${PROJECT_NAME}_lib src/track.cpp )
+add_library( ${PROJECT_NAME}_lib src/tracker.cpp )
 target_link_libraries( ${PROJECT_NAME}_lib
 	${catkin_LIBRARIES}
 )
