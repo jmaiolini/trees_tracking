@@ -1,19 +1,40 @@
 subscribers:
 
-  camera:
-    topic: /camera_topic
-    queue_size: 1
+    left_img:
 
-  odom:
-    topic: /odom
-    queue_size: 1
+      topic: /darknet_ros/left/image_color
+      queue_size: 1
 
-  Rois:
-    topic: /rois 
-    queue_size: 1
+    depth_img:
+
+      topic: /darkent_ros/depth/image_raw
+      queue_size: 1
+
+    left_info:
+	  
+      topic: /mynteye/left/camera_info
+      queue_size: 1
+
+    depth_info:
+	  
+      topic: /mynteye/depth/camera_info
+      queue_size: 1
+
+    odom:
+
+      topic: /mynteye/odom
+      queue_size: 1  
+
+    boxes:
+
+      topic: /darknet_ros/bounding_boxes 
+      queue_size: 1
 
 publishers:
 
   objects_position:
-    topic: /objects
 
+    topic: /object_poses
+    queue_size: 1
+
+using_YOLO: true
