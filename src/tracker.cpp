@@ -1,34 +1,35 @@
 #include "trees_tracking/tracker.h"
 
-Tracker::Tracker(NodeHandle& nh, string& params) :
-	nh_(nh),
-	params_(params)
+Tracker::Tracker(NodeHandle& nh) :
+	nh_(nh)
+	// params_(params)
 {
-	readParams(params);
+	readParams();
 
 	init();
+	
 };
 
-void Tracker::readParams(string& params_file){
-
-	YAML::Node configuration = YAML::LoadFile(params_file);
+void Tracker::readParams(){//string& params_file){
+	
+	// YAML::Node configuration = YAML::LoadFile(params_file);
 
 	//ROS parameters
-	leftImgTopicName_ = configuration["subscribers"]["left_img"]["topic"].as<string>();    
-	depthImgTopicName_ = configuration["subscribers"]["depth_img"]["topic"].as<string>(); 
-	leftInfoTopicName_ = configuration["subscribers"]["left_info"]["topic"].as<string>();    
-	depthInfoTopicName_ = configuration["subscribers"]["depth_info"]["topic"].as<string>();   
-	cameraOdomTopicName_ = configuration["subscribers"]["odom"]["topic"].as<string>();    
-	boxesTopicName_ = configuration["subscribers"]["boxes"]["topic"].as<string>(); 
+	nh_.getParam("/subs/left_img/topic", leftImgTopicName_);  
+	nh_.getParam("/subs/depth_img/topic", depthImgTopicName_);  
+	nh_.getParam("/subs/left_info/topic", leftInfoTopicName_);  
+	nh_.getParam("/subs/depth_info/topic", depthInfoTopicName_);  
+	nh_.getParam("/subs/odom/topic", cameraOdomTopicName_);  
+	nh_.getParam("/subs/boxes/topic", boxesTopicName_);  
 
-	leftImgTopicQueue_ = configuration["subscribers"]["left_img"]["queue_size"].as<int>();    
-	depthImgTopicQueue_ = configuration["subscribers"]["depth_img"]["queue_size"].as<int>();  
-	leftInfoTopicQueue_ = configuration["subscribers"]["left_info"]["queue_size"].as<int>();    
-	depthInfoTopicQueue_ = configuration["subscribers"]["depth_info"]["queue_size"].as<int>();  	
-	cameraOdomTopicQueue_ = configuration["subscribers"]["odom"]["queue_size"].as<int>();    
-	boxesTopicQueue_ = configuration["subscribers"]["boxes"]["queue_size"].as<int>();     
+	nh_.getParam("/subs/left_img/queue_size", leftImgTopicQueue_);  
+	nh_.getParam("/subs/depth_img/queue_size", depthImgTopicQueue_);  
+	nh_.getParam("/subs/left_info/queue_size", leftInfoTopicQueue_);  
+	nh_.getParam("/subs/depth_info/queue_size", depthInfoTopicQueue_);  
+	nh_.getParam("/subs/odom/queue_size", cameraOdomTopicQueue_);  
+	nh_.getParam("/subs/boxes/queue_size", boxesTopicQueue_);  
 
-	ObjectPosesTopicName_ =configuration["publishers"]["objects_position"]["topic"].as<string>(); 
+	nh_.getParam("/subs/objects_position/topic", ObjectPosesTopicName_);  
 
   	//TODO
 
@@ -39,7 +40,6 @@ void Tracker::readParams(string& params_file){
 void Tracker::init(){
 
 	//ROS topics
-
 	left_img_sub_ = nh_.subscribe(leftImgTopicName_, leftImgTopicQueue_, &Tracker::leftImgCallback, this);
 	depth_img_sub_ = nh_.subscribe(depthImgTopicName_, depthImgTopicQueue_, &Tracker::depthImgCallback, this);
 	left_info_sub_ = nh_.subscribe(leftInfoTopicName_, leftInfoTopicQueue_, &Tracker::leftInfoCallback, this);
@@ -53,7 +53,9 @@ void Tracker::init(){
 
 
 //ROS callbacks
+void Tracker::aoCallback(const sensor_msgs::Image::ConstPtr& msg){
 
+}
 void Tracker::leftImgCallback(const sensor_msgs::Image::ConstPtr& msg){
 
 }

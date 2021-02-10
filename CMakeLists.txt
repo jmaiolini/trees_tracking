@@ -11,10 +11,7 @@ find_package(catkin REQUIRED COMPONENTS
   roscpp
   rospy
   std_msgs
-  roslib
 )
-
-find_package(yaml-cpp REQUIRED)
 
 ## System dependencies are found with CMake's conventions
 # find_package(Boost REQUIRED COMPONENTS system)
@@ -127,7 +124,6 @@ include_directories(
 add_library( ${PROJECT_NAME}_lib src/tracker.cpp )
 target_link_libraries( ${PROJECT_NAME}_lib
 	${catkin_LIBRARIES}
-    ${YAML_CPP_LIBRARIES}
 )
 ## Add cmake target dependencies of the library
 ## as an example, code may need to be generated before libraries

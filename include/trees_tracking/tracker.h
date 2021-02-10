@@ -1,5 +1,4 @@
 #include <ros/ros.h>
-#include <yaml-cpp/yaml.h>
 #include <sensor_msgs/Image.h>
 #include <sensor_msgs/CameraInfo.h>
 #include <nav_msgs/Odometry.h>
@@ -32,7 +31,7 @@ class Tracker{
 
 	
 
-	void readParams(string&);
+	void readParams();//string&);
 	void init();
 
 	//ROS callbacks
@@ -42,9 +41,9 @@ class Tracker{
 	void depthInfoCallback(const sensor_msgs::CameraInfo::ConstPtr& );
 	void cameraOdomCallback(const nav_msgs::Odometry::ConstPtr& );
     void boxesCallback(const std_msgs::String::ConstPtr& ); //TOCHANGE WITH YOLO
-
+	void aoCallback(const sensor_msgs::Image::ConstPtr& );
 	public:
-	Tracker(NodeHandle&, string&);
+	Tracker(NodeHandle&);
 
 
 

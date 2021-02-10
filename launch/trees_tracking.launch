@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<launch>
+
+  <!-- ROS parameters file -->
+  <arg name="ros_param_file" default="$(find trees_tracking)/config/params.yaml"/>
+
+  <!-- Load parameters -->
+  <rosparam command="load" file="$(arg ros_param_file)"/>
+
+
+  <!-- Start node-->
+  <node pkg="trees_tracking" type="trees_tracking_node" name="trees_tracking" output="screen"> </node>
+
+</launch>

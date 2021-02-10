@@ -1,4 +1,4 @@
-subscribers:
+subs:
 
     left_img:
 
@@ -7,16 +7,16 @@ subscribers:
 
     depth_img:
 
-      topic: /darkent_ros/depth/image_raw
+      topic: /darknet_ros/depth/image_raw
       queue_size: 1
 
     left_info:
-	  
+
       topic: /mynteye/left/camera_info
       queue_size: 1
 
     depth_info:
-	  
+
       topic: /mynteye/depth/camera_info
       queue_size: 1
 
@@ -30,7 +30,7 @@ subscribers:
       topic: /darknet_ros/bounding_boxes 
       queue_size: 1
 
-publishers:
+pubs:
 
   objects_position:
 
