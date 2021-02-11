@@ -29,6 +29,7 @@ subs:
 
       topic: /darknet_ros/bounding_boxes 
       queue_size: 1
+	  num_obj_topic: /darknet_ros/object_detector
 
 pubs:
 

@@ -11,6 +11,7 @@ find_package(catkin REQUIRED COMPONENTS
   roscpp
   rospy
   std_msgs
+  darknet_ros_msgs
 )
 
 ## System dependencies are found with CMake's conventions
@@ -124,11 +125,10 @@ include_directories(
 add_library( ${PROJECT_NAME}_lib src/tracker.cpp )
 target_link_libraries( ${PROJECT_NAME}_lib
 	${catkin_LIBRARIES}
+    
 )
-## Add cmake target dependencies of the library
-## as an example, code may need to be generated before libraries
-## either from message generation or dynamic reconfigure
-# add_dependencies(${PROJECT_NAME} ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
+## Add YOLO custom msgs dependency (exported_targets)
+add_dependencies(${PROJECT_NAME}_lib ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
 
 ## Declare a C++ executable
 ## With catkin_make all packages are built within a single CMake context
